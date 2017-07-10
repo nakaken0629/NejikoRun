@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class GameController : MonoBehaviour
 	void ReturnToTitle ()
 	{
 		// タイトルシーンに切り替え
-		Application.LoadLevel ("Title");
+//		Application.LoadLevel ("Title");
+		SceneManager.LoadScene ("Title");
 	}
 }
