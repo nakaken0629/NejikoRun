@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
 	{
 		// スコアラベルを更新
 		int score = CalcScore ();
-		scoreLabel.text = "Score: " + score + "m";
+		scoreLabel.text = "Score : " + score + "m";
 
 		// ライフパネルを更新
 		lifePanel.UpdateLife (nejiko.Life ());
@@ -24,6 +24,11 @@ public class GameController : MonoBehaviour
 		if (nejiko.Life () <= 0) {
 			// これ以降のUpdateは止める
 			enabled = false;
+
+			// ハイスコアを更新
+			if (PlayerPrefs.GetInt ("HighScore") < score) {
+				PlayerPrefs.SetInt ("HighScore", score);
+			}
 
 			// 2秒後にReturnToTitleを呼び出す
 			Invoke ("ReturnToTitle", 2.0f);
