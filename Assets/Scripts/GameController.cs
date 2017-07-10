@@ -18,11 +18,26 @@ public class GameController : MonoBehaviour
 
 		// ライフパネルを更新
 		lifePanel.UpdateLife (nejiko.Life ());
+
+		// ねじ子のライフが０になったらゲームオーバー
+		if (nejiko.Life () <= 0) {
+			// これ以降のUpdateは止める
+			enabled = false;
+
+			// 2秒後にReturnToTitleを呼び出す
+			Invoke ("ReturnToTitle", 2.0f);
+		}
 	}
 
 	int CalcScore ()
 	{
 		// ねじ子の走行距離をスコアとする
 		return (int)nejiko.transform.position.z;
+	}
+
+	void ReturnToTitle ()
+	{
+		// タイトルシーンに切り替え
+		Application.LoadLevel ("Title");
 	}
 }
